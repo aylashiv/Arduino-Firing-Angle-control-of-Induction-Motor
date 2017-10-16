@@ -1,0 +1,127 @@
+///******************************************************************************************
+//This code is Written by aylashiv R&D engineer,Hyderabad,India
+//The functioanlity mainly focuses on how to control the voltage of the
+//Induction Motor using ZCR as a refernce we can able to trigger the
+//Firing pulses from the Arduino.
+
+
+
+const int output=4; //the control pin through which the firing pulses are delivered
+const int zcr=3;//ZCR reference pin on digital Pin 3
+const int led=5;
+const int interruptpin=2;//Push button connected to Digital Pin 6
+unsigned char i=0;
+void setup() 
+{
+  pinMode(output,OUTPUT);
+  pinMode(led,OUTPUT);
+  pinMode(zcr,INPUT);
+  digitalWrite(output,LOW);
+  digitalWrite(zcr,HIGH);
+  digitalWrite(led,LOW);
+  pinMode(interruptpin,INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(interruptpin),call,LOW);
+  
+  // put your setup code here, to run once:
+
+}
+void call()
+{
+  digitalWrite(led,!digitalRead(led));
+i++;
+if(i>9)
+i=0;
+}
+void zcr_()
+{
+  while(!(digitalRead(zcr)==HIGH));
+}
+void call_output(unsigned char i)
+{
+
+   if(i==1)fun1();
+   else if(i==2)fun2();
+   else if(i==3)fun3();
+   else if(i==4)fun4();
+   else if(i==5)fun5();
+   else if(i==6)fun6();
+   else if(i==7)fun7();
+   else if(i==8)fun8();
+   else if(i==9)fun9();
+   
+}
+void loop() 
+{
+  detachInterrupt(interruptpin);
+  zcr_();
+  attachInterrupt(digitalPinToInterrupt(interruptpin),call,LOW);
+  //attachInterrupt(interruptpin,call,LOW);
+  call_output(i);
+  // put your main code here, to run repeatedly:
+}
+
+void fun1()
+{
+  delay(1);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);//msdelay(2);
+//msdelay05();
+digitalWrite(output,LOW);//output=0;
+}
+void fun2()
+{
+delay(2);//msdelay(2);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);
+digitalWrite(output,LOW);//output =0;
+}
+void fun3()
+{
+delay(3);//msdelay(4);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);//msdelay05();
+digitalWrite(output,LOW);//output =0;
+}
+void fun4()
+{
+delay(4);//msdelay(6);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);//msdelay05();
+digitalWrite(output,LOW);//output =0;
+}
+void fun5()
+{
+delay(5);//msdelay(8);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);//msdelay05();
+digitalWrite(output,LOW);//output =0;
+}
+void fun6()
+{
+delay(6);//msdelay(8);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);//msdelay05();
+digitalWrite(output,LOW);//output =0;
+}
+void fun7()
+{
+delay(7);//msdelay(8);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);//msdelay05();
+digitalWrite(output,LOW);//output =0;
+}
+void fun8()
+{
+delay(8);//msdelay(8);
+digitalWrite(output,HIGH);//output =1;
+delayMicroseconds(500);//msdelay05();
+digitalWrite(output,LOW);//output =0;
+}
+void fun9()
+{
+delay(9);
+digitalWrite(output,HIGH);
+delayMicroseconds(500);
+digitalWrite(output,LOW);//output =0;
+}
+
